@@ -34,3 +34,6 @@
 [submodule "lang/zencoding"]
 	path = lang/zencoding
 	url = git://github.com/mattn/zencoding-vim.git
+[submodule "bundle/ctrlp"]
+	path = bundle/ctrlp
+	url = git://github.com/kien/ctrlp.vim.git
