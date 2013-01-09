@@ -90,12 +90,19 @@ noremap <leader>W :w !sudo tee % > /dev/null<CR>
 " Automatic commands
 if has("autocmd")
 	" Enable file type detection
-	filetype on
+	filetype on 
 	" Treat .json files as .js
 	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
 endif
+
+filetype plugin on
+
+" autoindent on
+set autoindent
 
 call pathogen#infect()
 call pathogen#infect('~/.vim/colours')
 call pathogen#infect('~/.vim/lang')
 
+" Key mappings to NerdTree
+map <Leader>n :NERDTreeToggle<CR>
