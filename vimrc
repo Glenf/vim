@@ -38,8 +38,13 @@ set number
 syntax on
 " Highlight current line
 set cursorline
-" Make tabs as wide as two spaces
+" Make tabs as wide as four spaces
 set tabstop=4
+" Number of spaces used on autoindent
+set shiftwidth=4
+set smarttab
+" autoindent on
+set autoindent
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
@@ -75,6 +80,11 @@ endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
+" set folding
+set foldmethod=indent
+set foldnestmax=2
+set foldlevel=5
+
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
 	let save_cursor = getpos(".")
@@ -90,15 +100,11 @@ noremap <leader>W :w !sudo tee % > /dev/null<CR>
 " Automatic commands
 if has("autocmd")
 	" Enable file type detection
-	filetype on 
+	filetype plugin indent on 
 	" Treat .json files as .js
 	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
 endif
 
-filetype plugin on
-
-" autoindent on
-set autoindent
 
 call pathogen#infect()
 call pathogen#infect('~/.vim/colours')
@@ -106,3 +112,9 @@ call pathogen#infect('~/.vim/lang')
 
 " Key mappings to NerdTree
 map <Leader>n :NERDTreeToggle<CR>
+
+" Ctrlp key binding
+map <C-t> :CtrlP<CR> 
+
+" Key mapping for Ack
+map <C-F> :Ack<CR>
