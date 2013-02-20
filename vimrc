@@ -43,6 +43,8 @@ set tabstop=4
 " Number of spaces used on autoindent
 set shiftwidth=4
 set smarttab
+" tabs to spaces -- because of the python guys
+set expandtab
 " autoindent on
 set autoindent
 " Show “invisible” characters
