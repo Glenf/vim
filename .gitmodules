@@ -49,3 +49,9 @@
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
 	url = git://github.com/majutsushi/tagbar
+[submodule "bundle/vim-jade"]
+	path = bundle/vim-jade
+	url = git://github.com/digitaltoad/vim-jade.git
+[submodule "lang/applescript"]
+	path = lang/applescript
+	url = git://github.com/vim-scripts/applescript.vim.git
