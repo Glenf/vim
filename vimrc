@@ -47,6 +47,8 @@ set smarttab
 set expandtab
 " autoindent on
 set autoindent
+" Smartindetn on
+set smartindent
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
@@ -86,6 +88,15 @@ set scrolloff=3
 set foldmethod=indent
 set foldnestmax=3
 set nofoldenable
+
+
+" More syntax hilighting
+let python_highlight_all = 1
+
+" Autocomplete mapped to ctrl-space
+"set omnifunc=pythoncomplete#Complete
+set ofu=syntaxcomplete#Complete
+inoremap <Nul> <C-x><C-o>
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
