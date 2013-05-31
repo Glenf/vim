@@ -126,7 +126,7 @@ call pathogen#infect('~/.vim/lang')
 
 " Set theme
 set background=dark
-colorscheme solarized
+colorscheme gruvbox
 
 " Key mappings to NerdTree
 map <Leader>n :NERDTreeToggle<CR>
