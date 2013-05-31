@@ -11,7 +11,7 @@ set backspace=indent,eol,start
 " Optimize for fast terminal connections
 set ttyfast
 " Add the g flag to search/replace by default
-set gdefault
+"set gdefault
 " Use UTF-8 without BOM
 set encoding=utf-8 nobomb
 " Change mapleader
@@ -36,6 +36,7 @@ set secure
 set number
 " Enable syntax highlighting
 syntax on
+
 " Highlight current line
 set cursorline
 " Make tabs as wide as four spaces
@@ -123,6 +124,10 @@ call pathogen#infect()
 call pathogen#infect('~/.vim/colours')
 call pathogen#infect('~/.vim/lang')
 
+" Set theme
+set background=dark
+colorscheme solarized
+
 " Key mappings to NerdTree
 map <Leader>n :NERDTreeToggle<CR>
 
@@ -131,6 +136,8 @@ map <C-t> :CtrlP<CR>
 
 " Key mapping for Ack
 map <C-F> :Ack<CR>
+
+
 
 "statusline setup
 set statusline =%#identifier#

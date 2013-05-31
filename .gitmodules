@@ -67,3 +67,6 @@
 [submodule "bundle/snipmate-snippets"]
 	path = bundle/snipmate-snippets
 	url = git://github.com/honza/snipmate-snippets.git
+[submodule "bundle/vim-html-escape"]
+	path = bundle/vim-html-escape
+	url = git://github.com/skwp/vim-html-escape.git
