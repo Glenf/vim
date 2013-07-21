@@ -73,3 +73,6 @@
 [submodule "colours/gruvbox"]
 	path = colours/gruvbox
 	url = git@github.com:morhetz/gruvbox.git
+[submodule "lang/stylus"]
+	path = lang/stylus
+	url = git@github.com:vim-scripts/vim-stylus.git

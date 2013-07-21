@@ -89,6 +89,7 @@ set scrolloff=3
 set foldmethod=indent
 set foldnestmax=3
 set nofoldenable
+set foldcolumn=3
 
 
 " More syntax hilighting
