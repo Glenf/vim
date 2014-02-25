@@ -35,7 +35,7 @@ set secure
 " Enable line numbers
 set number
 " Enable syntax highlighting
-syntax on
+syntax enable
 
 " Highlight current line
 set cursorline
@@ -115,15 +115,15 @@ noremap <leader>W :w !sudo tee % > /dev/null<CR>
 " Automatic commands
 if has("autocmd")
     " Enable file type detection
-    filetype plugin indent on 
+    filetype plugin indent on
     " Treat .json files as .js
     autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
 endif
 
 
 call pathogen#infect()
-call pathogen#infect('~/.vim/colours')
-call pathogen#infect('~/.vim/lang')
+call pathogen#infect('~/.vim/colours/{}')
+call pathogen#infect('~/.vim/lang/{}')
 
 " Set theme
 set background=dark
@@ -131,10 +131,12 @@ set background=dark
 colorscheme solarized
 
 " Key mappings to NerdTree
+set autochdir
+" let NERDTreeChDirMode=2
 map <Leader>n :NERDTreeToggle<CR>
 
 " Ctrlp key binding
-map <C-t> :CtrlP<CR> 
+map <C-t> :CtrlP<CR>
 
 " Key mapping for Ack
 map <C-F> :Ack<CR>
@@ -195,6 +197,13 @@ set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
 set laststatus=2
+
+
+" Gvim stuff
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
 
 
 "recalculate the trailing whitespace warning when idle, and after saving
@@ -310,6 +319,3 @@ function! s:Median(nums)
         return (nums[l/2] + nums[(l/2)-1]) / 2
     endif
 endfunction
-
-
-
