@@ -1,6 +1,6 @@
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
-	url = git://github.com/tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule "colours/solarized"]
 	path = colours/solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
@@ -33,43 +33,52 @@
 	url = https://github.com/scrooloose/nerdtree.git
 [submodule "bundle/ctrlp"]
 	path = bundle/ctrlp
-	url = git://github.com/kien/ctrlp.vim.git
+	url = https://github.com/kien/ctrlp.vim.git
 [submodule "bundle/ack"]
 	path = bundle/ack
-	url = git://github.com/mileszs/ack.vim.git
+	url = https://github.com/mileszs/ack.vim.git
 [submodule "bundle/surround"]
 	path = bundle/surround
-	url = git://github.com/tpope/vim-surround.git
+	url = https://github.com/tpope/vim-surround.git
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
-	url = git://github.com/scrooloose/syntastic.git
+	url = https://github.com/scrooloose/syntastic.git
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
-	url = git://github.com/majutsushi/tagbar
+	url = https://github.com/majutsushi/tagbar
 [submodule "bundle/vim-jade"]
 	path = bundle/vim-jade
-	url = git://github.com/digitaltoad/vim-jade.git
+	url = https://github.com/digitaltoad/vim-jade.git
 [submodule "lang/applescript"]
 	path = lang/applescript
-	url = git://github.com/vim-scripts/applescript.vim.git
+	url = https://github.com/vim-scripts/applescript.vim.git
 [submodule "bundle/vim-snipmate"]
 	path = bundle/vim-snipmate
-	url = git://github.com/garbas/vim-snipmate.git
+	url = https://github.com/garbas/vim-snipmate.git
 [submodule "bundle/tlib_vim"]
 	path = bundle/tlib_vim
-	url = git://github.com/tomtom/tlib_vim.git
+	url = https://github.com/tomtom/tlib_vim.git
 [submodule "bundle/vim-addon-mw-utils"]
 	path = bundle/vim-addon-mw-utils
-	url = git://github.com/MarcWeber/vim-addon-mw-utils.git
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
 [submodule "bundle/vim-html-escape"]
 	path = bundle/vim-html-escape
-	url = git://github.com/skwp/vim-html-escape.git
+	url = https://github.com/skwp/vim-html-escape.git
+[submodule "colours/gruvbox"]
+	path = colours/gruvbox
+	url = https://github.com/morhetz/gruvbox.git
 [submodule "lang/stylus"]
 	path = lang/stylus
-	url = git@github.com:vim-scripts/vim-stylus.git
+	url = https://github.com/vim-scripts/vim-stylus.git
 [submodule "lang/emmet-vim"]
 	path = lang/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
 [submodule "bundle/handlebars"]
 	path = bundle/handlebars
-	url = git://github.com/nono/vim-handlebars.git
+	url = https://github.com/nono/vim-handlebars.git
+[submodule "bundle/vim-slim"]
+	path = bundle/vim-slim
+	url = https://github.com/slim-template/vim-slim.git
+[submodule "bundle/jshint2"]
+	path = bundle/jshint2
+	url = https://github.com/Shutnik/jshint2.vim.git

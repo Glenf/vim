@@ -34,8 +34,6 @@ set exrc
 set secure
 " Enable line numbers
 set number
-" Enable syntax highlighting
-syntax on
 
 " Highlight current line
 set cursorline
@@ -112,34 +110,52 @@ noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
-" Automatic commands
-if has("autocmd")
-    " Enable file type detection
-    filetype plugin indent on 
-    " Treat .json files as .js
-    autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-endif
+" Set filetype of before pathogen infection.
+" Coffeescript coloring wont work othewise
+filetype off
 
+execute pathogen#infect()
+execute pathogen#infect('~/.vim/colours/{}')
+execute pathogen#infect('~/.vim/lang/{}')
 
-call pathogen#infect()
-call pathogen#infect('~/.vim/colours')
-call pathogen#infect('~/.vim/lang')
+" Enable syntax highlighting
+syntax on
+
+" Set filetype after pathogen infection
+filetype off
+
+" Enable file type detection
+filetype plugin indent on
+
+" Treat .json files as .js
+autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+
+" Treat .cofee files as coffeescript
+autocmd BufNewFile,BufRead *.coffee setfiletype coffee
+
 
 " Set theme
 set background=dark
-" colorscheme gruvbox
-colorscheme solarized
+if has("gui_running")
+    colorscheme gruvbox
+else
+    colorscheme solarized
+endif
+"colorscheme ir_black
 
 " Key mappings to NerdTree
+set autochdir
+" let NERDTreeChDirMode=2
 map <Leader>n :NERDTreeToggle<CR>
 
 " Ctrlp key binding
-map <C-t> :CtrlP<CR> 
+map <C-t> :CtrlP<CR>
 
 " Key mapping for Ack
 map <C-F> :Ack<CR>
 
-
+" Key mapping for TagBar
+nmap <F8> :TagbarToggle<CR>
 
 "statusline setup
 set statusline =%#identifier#
@@ -196,10 +212,8 @@ set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
 set laststatus=2
 
-
 "recalculate the trailing whitespace warning when idle, and after saving
 autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
-
 
 "return '[\s]' if trailing white space is detected
 "return '' otherwise
@@ -310,6 +324,3 @@ function! s:Median(nums)
         return (nums[l/2] + nums[(l/2)-1]) / 2
     endif
 endfunction
-
-
-
