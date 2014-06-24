@@ -1,7 +1,9 @@
 " Make Vim more useful
 set nocompatible
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
-set clipboard=unnamed
+if $TMUX == ''
+    set clipboard+=unnamed
+endif
 " Enhance command-line completion
 set wildmenu
 " Allow cursor keys in insert mode
@@ -95,8 +97,11 @@ let python_highlight_all = 1
 
 " Autocomplete mapped to ctrl-space
 "set omnifunc=pythoncomplete#Complete
-set ofu=syntaxcomplete#Complete
-inoremap <Nul> <C-x><C-o>
+"set ofu=syntaxcomplete#Complete
+"inoremap <Nul> <C-x><C-o>
+
+" autocomplete
+let g:neocomplcache_enable_at_startup = 1
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
@@ -114,6 +119,7 @@ noremap <leader>W :w !sudo tee % > /dev/null<CR>
 " Coffeescript coloring wont work othewise
 filetype off
 
+set nocp
 execute pathogen#infect()
 execute pathogen#infect('~/.vim/colours/{}')
 execute pathogen#infect('~/.vim/lang/{}')
