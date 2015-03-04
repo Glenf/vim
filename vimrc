@@ -162,12 +162,13 @@ inoremap <expr><C-l>     neocomplete#complete_common_string()
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-    return neocomplete#close_popup() . "\<CR>"
+    "return neocomplete#close_popup() . "\<CR>"
+    "return neocomplete#close_popup()
     " For no inserting <CR> key.
-    "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+    return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
 " <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
@@ -199,10 +200,14 @@ else
 endif
 "colorscheme ir_black
 
+" TODO: Remove NerdTree dependency
 " Key mappings to NerdTree
-set autochdir
+"set autochdir
 " let NERDTreeChDirMode=2
-map <Leader>n :NERDTreeToggle<CR>
+"map <Leader>n :NERDTreeToggle<CR>
+
+" Map NerdTree toggle to netrw (Explore)
+map <Leader>n :Explore<CR>
 
 " Ctrlp key binding
 map <C-t> :CtrlP<CR>
@@ -227,6 +232,8 @@ set statusline+=%*
 set statusline+=%#warningmsg#
 set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
 set statusline+=%*
+
+"set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
 
 set statusline+=%h      "help file flag
 set statusline+=%y      "filetype
