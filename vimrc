@@ -1,5 +1,62 @@
 " Make Vim more useful
 set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+
+" Functionality
+Plugin 'editorconfig/editorconfig-vim'
+
+Plugin 'tpope/vim-git'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+
+Plugin 'tpope/vim-surround'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+
+Plugin 'Valloric/YouCompleteMe'
+
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/syntastic'
+
+Plugin 'tpope/vim-dispatch'
+
+" Languages
+Plugin 'vim-ruby/vim-ruby'
+
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'wavded/vim-stylus'
+
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'pangloss/vim-javascript'
+Plugin 'Shutnik/jshint2.vim'
+
+Plugin 'slim-template/vim-slim'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'tpope/vim-haml'
+Plugin 'digitaltoad/vim-jade'
+
+Plugin 'tpope/vim-markdown'
+
+Plugin 'othree/javascript-libraries-syntax.vim'
+
+Plugin 'mattn/emmet-vim'
+
+" Themes
+Plugin 'freeo/vim-kalisi'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'cocopon/iceberg.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 if $TMUX == ''
     set clipboard+=unnamed
@@ -62,7 +119,7 @@ set incsearch
 " Always show status line
 set laststatus=2
 " Enable mouse in all modes
-set mouse-=a
+"set mouse-=a
 " Disable error bells
 set noerrorbells
 " Don’t reset cursor to start of line when moving around.
@@ -92,10 +149,6 @@ set nofoldenable
 set foldcolumn=3
 
 
-" More syntax hilighting
-let python_highlight_all = 1
-
-
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
     let save_cursor = getpos(".")
@@ -108,103 +161,21 @@ noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
-" Set filetype of before pathogen infection.
-" Coffeescript coloring wont work othewise
-filetype off
-
-set nocp
-execute pathogen#infect()
-execute pathogen#infect('~/.vim/colours/{}')
-execute pathogen#infect('~/.vim/lang/{}')
-
 " Enable syntax highlighting
 syntax on
-
-" Set filetype after pathogen infection
-filetype off
 
 " Enable file type detection
 filetype plugin indent on
 
-" Treat .json files as .js
-autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-
-" Treat .coffee files as coffeescript
-autocmd BufNewFile,BufRead *.coffee setfiletype coffee
-
-" Autocomplete
-" Use neocomplete
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase
-let g:neocomplete#enable_smart_case = 1
-" Minimum syntax keyword length
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-" define dictionary
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-    \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-    "return neocomplete#close_popup() . "\<CR>"
-    "return neocomplete#close_popup()
-    " For no inserting <CR> key.
-    return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
-
-" Enable omni complete
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-" if !exists('g:neocomplete#sources#omni#input_patterns')
-"   let g:neocomplete#sources#omni#input_patterns = {}
-"   endif
-"   k
-
 " Set theme
 set background=dark
-if has("gui_running")
-    colorscheme gruvbox
-else
-    colorscheme solarized
-endif
-"colorscheme ir_black
+"if has("gui_running")
+    "colorscheme iceberg
+"else
+    "colorscheme iceberg
+"endif
+colorscheme iceberg
 
-" TODO: Remove NerdTree dependency
-" Key mappings to NerdTree
-"set autochdir
-" let NERDTreeChDirMode=2
-"map <Leader>n :NERDTreeToggle<CR>
 
 " Map NerdTree toggle to netrw (Explore)
 map <Leader>n :Explore<CR>
@@ -387,3 +358,10 @@ function! s:Median(nums)
         return (nums[l/2] + nums[(l/2)-1]) / 2
     endif
 endfunction
+
+" Syntastic settings
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
