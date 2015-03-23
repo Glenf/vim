@@ -12,6 +12,8 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'tpope/vim-git'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
+Plugin 'mhinz/vim-signify'
+Plugin 'bling/vim-airline'
 
 Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
@@ -19,7 +21,8 @@ Plugin 'mileszs/ack.vim'
 
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+"Plugin 'garbas/vim-snipmate'
+Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
 Plugin 'Valloric/YouCompleteMe'
@@ -30,19 +33,21 @@ Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-dispatch'
 
 " Languages
+Plugin 'othree/html5.vim'
+Plugin 'slim-template/vim-slim'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'tpope/vim-haml'
+Plugin 'digitaltoad/vim-jade'
+
 Plugin 'vim-ruby/vim-ruby'
 
+Plugin 'hail2u/vim-css3-syntax'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'wavded/vim-stylus'
 
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'pangloss/vim-javascript'
 Plugin 'Shutnik/jshint2.vim'
-
-Plugin 'slim-template/vim-slim'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'tpope/vim-haml'
-Plugin 'digitaltoad/vim-jade'
 
 Plugin 'tpope/vim-markdown'
 
@@ -63,6 +68,10 @@ if $TMUX == ''
 endif
 " Enhance command-line completion
 set wildmenu
+" Ignore some OSX/Linux files
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+" Ignore some Windows files
+set wildignore+=*\\tmp\\*,*.exe
 " Allow cursor keys in insert mode
 set esckeys
 " Allow backspace in insert mode
@@ -174,76 +183,95 @@ set background=dark
 "else
     "colorscheme iceberg
 "endif
-colorscheme iceberg
+colorscheme Tomorrow-Night
 
 
 " Map NerdTree toggle to netrw (Explore)
 map <Leader>n :Explore<CR>
 
+""""""""""""""""""
+" CtrlP Settings
+""""""""""""""""""
 " Ctrlp key binding
 map <C-t> :CtrlP<CR>
+
+" Ignore some files and folders
+let g:ctrl_p_custom_ignore = {
+    \ 'dir' : '\v[\/]\.(git|hg|svn)|\target$',
+    \ 'file' : '\v\.(exe|so|dll|class|png|jpg|gif)$',
+\}
+
+" CtrlP buffer search
+nmap <Leader>bb :CtrlPBuffer<cr>
+
 
 " Key mapping for Ack
 map <C-F> :Ack<CR>
 
 " Key mapping for TagBar
-nmap <F8> :TagbarToggle<CR>
+"nmap <F8> :TagbarToggle<CR>
+
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-a>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 "statusline setup
-set statusline =%#identifier#
-set statusline+=[%t]    "tail of the filename
-set statusline+=%*
+"set statusline =%#identifier#
+"set statusline+=[%t]    "tail of the filename
+"set statusline+=%*
 
 "display a warning if fileformat isnt unix
-set statusline+=%#warningmsg#
-set statusline+=%{&ff!='unix'?'['.&ff.']':''}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{&ff!='unix'?'['.&ff.']':''}
+"set statusline+=%*
 
 "display a warning if file encoding isnt utf-8
-set statusline+=%#warningmsg#
-set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
+"set statusline+=%*
 
 "set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
 
-set statusline+=%h      "help file flag
-set statusline+=%y      "filetype
+"set statusline+=%h      "help file flag
+"set statusline+=%y      "filetype
 
 "read only flag
-set statusline+=%#identifier#
-set statusline+=%r
-set statusline+=%*
+"set statusline+=%#identifier#
+"set statusline+=%r
+"set statusline+=%*
 
 "modified flag
-set statusline+=%#identifier#
-set statusline+=%m
-set statusline+=%*
+"set statusline+=%#identifier#
+"set statusline+=%m
+"set statusline+=%*
 
-set statusline+=%{fugitive#statusline()}
+"set statusline+=%{fugitive#statusline()}
 
 "display a warning if &et is wrong, or we have mixed-indenting
-set statusline+=%#error#
-set statusline+=%{StatuslineTabWarning()}
-set statusline+=%*
+"set statusline+=%#error#
+"set statusline+=%{StatuslineTabWarning()}
+"set statusline+=%*
 
-set statusline+=%{StatuslineTrailingSpaceWarning()}
+"set statusline+=%{StatuslineTrailingSpaceWarning()}
 
-set statusline+=%{StatuslineLongLineWarning()}
+"set statusline+=%{StatuslineLongLineWarning()}
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 "display a warning if &paste is set
-set statusline+=%#error#
-set statusline+=%{&paste?'[paste]':''}
-set statusline+=%*
+"set statusline+=%#error#
+"set statusline+=%{&paste?'[paste]':''}
+"set statusline+=%*
 
-set statusline+=%=      "left/right separator
-set statusline+=%{StatuslineCurrentHighlight()}\ \ "current highlight
-set statusline+=%c,     "cursor column
-set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P    "percent through file
+"set statusline+=%=      "left/right separator
+"set statusline+=%{StatuslineCurrentHighlight()}\ \ "current highlight
+"set statusline+=%c,     "cursor column
+"set statusline+=%l/%L   "cursor line/total lines
+"set statusline+=\ %P    "percent through file
 set laststatus=2
 
 "recalculate the trailing whitespace warning when idle, and after saving
@@ -362,6 +390,5 @@ endfunction
 " Syntastic settings
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
-
