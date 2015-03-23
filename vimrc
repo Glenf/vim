@@ -274,6 +274,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 "set statusline+=\ %P    "percent through file
 set laststatus=2
 
+" Airline settings (statusbar)
+let g:airline_powerline_fonts = 1
+
 "recalculate the trailing whitespace warning when idle, and after saving
 autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
 
