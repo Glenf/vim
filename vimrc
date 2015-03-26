@@ -1,12 +1,15 @@
+" vim: foldmethod=marker
 " Make Vim more useful
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
+
+" Vundle plugins {{{1
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 
-" Functionality
+" Functionality {{{2
 Plugin 'editorconfig/editorconfig-vim'
 
 Plugin 'tpope/vim-git'
@@ -32,7 +35,7 @@ Plugin 'scrooloose/syntastic'
 
 Plugin 'tpope/vim-dispatch'
 
-" Languages
+" Languages {{{2
 Plugin 'othree/html5.vim'
 Plugin 'slim-template/vim-slim'
 Plugin 'mustache/vim-mustache-handlebars'
@@ -46,7 +49,8 @@ Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'wavded/vim-stylus'
 
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'pangloss/vim-javascript'
+"Plugin 'pangloss/vim-javascript'
+Plugin 'jelera/vim-javascript-syntax'
 Plugin 'Shutnik/jshint2.vim'
 
 Plugin 'tpope/vim-markdown'
@@ -55,13 +59,15 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 
 Plugin 'mattn/emmet-vim'
 
-" Themes
+" Themes {{{2
 Plugin 'freeo/vim-kalisi'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'cocopon/iceberg.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
+" Default settings {{{1
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 if $TMUX == ''
     set clipboard+=unnamed
@@ -151,11 +157,20 @@ endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
+" Folding -------------------------------------------------------------------------------- {{{1
+
 " set folding
 set foldmethod=indent
-set foldnestmax=3
-set nofoldenable
+"set foldnestmax=3
+"set nofoldenable
 set foldcolumn=3
+set foldlevelstart=99
+
+" Space to toggle folds
+nnoremap <Space> za
+vnoremap <Space> za
+
+" }}}
 
 
 " Strip trailing whitespace (,ss)
@@ -189,8 +204,7 @@ colorscheme Tomorrow-Night
 " Map NerdTree toggle to netrw (Explore)
 map <Leader>n :Explore<CR>
 
-""""""""""""""""""
-" CtrlP Settings
+" CtrlP Settings  {{{1
 """"""""""""""""""
 " Ctrlp key binding
 map <C-t> :CtrlP<CR>
@@ -203,7 +217,7 @@ let g:ctrl_p_custom_ignore = {
 
 " CtrlP buffer search
 nmap <Leader>bb :CtrlPBuffer<cr>
-
+" }}}
 
 " Key mapping for Ack
 map <C-F> :Ack<CR>
@@ -217,61 +231,6 @@ let g:UltiSnipsExpandTrigger="<c-a>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-"statusline setup
-"set statusline =%#identifier#
-"set statusline+=[%t]    "tail of the filename
-"set statusline+=%*
-
-"display a warning if fileformat isnt unix
-"set statusline+=%#warningmsg#
-"set statusline+=%{&ff!='unix'?'['.&ff.']':''}
-"set statusline+=%*
-
-"display a warning if file encoding isnt utf-8
-"set statusline+=%#warningmsg#
-"set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
-"set statusline+=%*
-
-"set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
-
-"set statusline+=%h      "help file flag
-"set statusline+=%y      "filetype
-
-"read only flag
-"set statusline+=%#identifier#
-"set statusline+=%r
-"set statusline+=%*
-
-"modified flag
-"set statusline+=%#identifier#
-"set statusline+=%m
-"set statusline+=%*
-
-"set statusline+=%{fugitive#statusline()}
-
-"display a warning if &et is wrong, or we have mixed-indenting
-"set statusline+=%#error#
-"set statusline+=%{StatuslineTabWarning()}
-"set statusline+=%*
-
-"set statusline+=%{StatuslineTrailingSpaceWarning()}
-
-"set statusline+=%{StatuslineLongLineWarning()}
-
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"display a warning if &paste is set
-"set statusline+=%#error#
-"set statusline+=%{&paste?'[paste]':''}
-"set statusline+=%*
-
-"set statusline+=%=      "left/right separator
-"set statusline+=%{StatuslineCurrentHighlight()}\ \ "current highlight
-"set statusline+=%c,     "cursor column
-"set statusline+=%l/%L   "cursor line/total lines
-"set statusline+=\ %P    "percent through file
 set laststatus=2
 
 " Airline settings (statusbar)
@@ -390,8 +349,9 @@ function! s:Median(nums)
     endif
 endfunction
 
-" Syntastic settings
+" Syntastic settings {{{1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+" }}}
