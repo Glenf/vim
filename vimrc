@@ -49,9 +49,7 @@ Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'wavded/vim-stylus'
 
 Plugin 'kchmck/vim-coffee-script'
-"Plugin 'pangloss/vim-javascript'
 Plugin 'jelera/vim-javascript-syntax'
-Plugin 'Shutnik/jshint2.vim'
 
 Plugin 'tpope/vim-markdown'
 
@@ -211,7 +209,7 @@ map <C-t> :CtrlP<CR>
 
 " Ignore some files and folders
 let g:ctrl_p_custom_ignore = {
-    \ 'dir' : '\v[\/]\.(git|hg|svn)|\target$',
+    \ 'dir' : '\v[\/]\.(git|hg|svn)|target|node_modules$',
     \ 'file' : '\v\.(exe|so|dll|class|png|jpg|gif)$',
 \}
 
@@ -352,6 +350,9 @@ endfunction
 " Syntastic settings {{{1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" JS Checking
+let g:syntastic_javascript_checkers = ['jscs']
 " }}}
