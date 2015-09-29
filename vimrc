@@ -44,9 +44,11 @@ Plugin 'digitaltoad/vim-jade'
 
 Plugin 'vim-ruby/vim-ruby'
 
-Plugin 'hail2u/vim-css3-syntax'
+Plugin 'JulesWang/css.vim'
+"Plugin 'hail2u/vim-css3-syntax'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'wavded/vim-stylus'
+Bundle 'genoma/vim-less'
 
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'jelera/vim-javascript-syntax'
@@ -57,10 +59,13 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 
 Plugin 'mattn/emmet-vim'
 
+Plugin 'mxw/vim-jsx'
+
 " Themes {{{2
 Plugin 'freeo/vim-kalisi'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'cocopon/iceberg.vim'
+Plugin 'chriskempson/vim-tomorrow-theme'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -196,7 +201,8 @@ set background=dark
 "else
     "colorscheme iceberg
 "endif
-colorscheme Tomorrow-Night
+"colorscheme Tomorrow-Night
+colorscheme iceberg
 
 
 " Map NerdTree toggle to netrw (Explore)
@@ -355,4 +361,7 @@ let g:syntastic_check_on_wq = 0
 
 " JS Checking
 let g:syntastic_javascript_checkers = ['jscs']
+
+" HTML Checking
+let g:syntastic_html_tidy_exec = 'tidy5'
 " }}}
