@@ -59,7 +59,7 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 
 Plugin 'mattn/emmet-vim'
 
-Plugin 'mxw/vim-jsx'
+Plugin 'jsx/vim-jsx'
 
 " Themes {{{2
 Plugin 'freeo/vim-kalisi'
@@ -359,8 +359,16 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_warning_symbol = "⚠ "
+
 " JS Checking
-let g:syntastic_javascript_checkers = ['jscs']
+"let g:syntastic_javascript_checkers = ['standard', 'jscs', 'jshint']
+autocmd FileType javascript let b:syntastic_checkers = findfile('.jshintrc', '.;') != '' ? ['jsxhint', 'jshint'] : ['standard']
+
+autocmd BufEnter, BufNew *.jsx b:syntastic_javascript_checkers = ['jsxhint']
+
+let g:syntastic_javascript_jsxhint_exec = 'jsx-jshint-wrapper'
 
 " HTML Checking
 let g:syntastic_html_tidy_exec = 'tidy5'
