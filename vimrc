@@ -19,7 +19,7 @@ Plugin 'mhinz/vim-signify'
 Plugin 'bling/vim-airline'
 
 Plugin 'tpope/vim-surround'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -32,6 +32,8 @@ Plugin 'Valloric/YouCompleteMe'
 
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/syntastic'
+" Dynamic eslint exec path
+Plugin 'mtscout6/syntastic-local-eslint.vim'
 
 Plugin 'tpope/vim-dispatch'
 
@@ -51,7 +53,9 @@ Plugin 'wavded/vim-stylus'
 Bundle 'genoma/vim-less'
 
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'jelera/vim-javascript-syntax'
+"Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
+
 
 Plugin 'tpope/vim-markdown'
 
@@ -59,13 +63,15 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 
 Plugin 'mattn/emmet-vim'
 
-Plugin 'jsx/vim-jsx'
+Plugin 'mxw/vim-jsx'
+Plugin 'derekwyatt/vim-scala'
 
 " Themes {{{2
 Plugin 'freeo/vim-kalisi'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'cocopon/iceberg.vim'
 Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'mhartington/oceanic-next'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -112,8 +118,6 @@ set secure
 " Enable line numbers
 set number
 
-" Highlight current line
-set cursorline
 " Make tabs as wide as four spaces
 set tabstop=4
 " Number of spaces used on autoindent
@@ -194,19 +198,28 @@ syntax on
 " Enable file type detection
 filetype plugin indent on
 
-" Set theme
+" Set theme:
+" For nvim
+" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
-"if has("gui_running")
-    "colorscheme iceberg
-"else
-    "colorscheme iceberg
-"endif
-"colorscheme Tomorrow-Night
-colorscheme iceberg
+colorscheme OceanicNext
+" let g:airline_theme='oceanicnext'
+
+" Highlight current line
+set cursorline
+highlight CursorLine ctermbg=235
+" highight 81 column
+set colorcolumn=81
+highlight ColorColumn ctermbg=234
 
 
 " Map NerdTree toggle to netrw (Explore)
 map <Leader>n :Explore<CR>
+
+" NerdCommenter
+let NERDSpaceDelims = 1
+let NERDRemoveExtraSpaces = 1
+
 
 " CtrlP Settings  {{{1
 """"""""""""""""""
@@ -215,7 +228,7 @@ map <C-t> :CtrlP<CR>
 
 " Ignore some files and folders
 let g:ctrl_p_custom_ignore = {
-    \ 'dir' : '\v[\/]\.(git|hg|svn)|target|node_modules$',
+    \ 'dir' : '\v[\/](node_modules|target|dist)|(\.(git|hg|svn))$',
     \ 'file' : '\v\.(exe|so|dll|class|png|jpg|gif)$',
 \}
 
@@ -363,12 +376,8 @@ let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠ "
 
 " JS Checking
-"let g:syntastic_javascript_checkers = ['standard', 'jscs', 'jshint']
-autocmd FileType javascript let b:syntastic_checkers = findfile('.jshintrc', '.;') != '' ? ['jsxhint', 'jshint'] : ['standard']
-
-autocmd BufEnter, BufNew *.jsx b:syntastic_javascript_checkers = ['jsxhint']
-
-let g:syntastic_javascript_jsxhint_exec = 'jsx-jshint-wrapper'
+let g:syntastic_javascript_checkers = ['eslint']
+"autocmd FileType javascript let b:syntastic_checkers = glob('.eslintr*') != '' ? ['eslint'] : ['standard']
 
 " HTML Checking
 let g:syntastic_html_tidy_exec = 'tidy5'
