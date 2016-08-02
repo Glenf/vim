@@ -84,9 +84,11 @@ endif
 " Enhance command-line completion
 set wildmenu
 " Ignore some OSX/Linux files
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+" set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*
+set wildignore+=*.png,*.jpg,*.o,*.so,*.swp,*.zip,*.tar,*/node_modules/*
 " Ignore some Windows files
-set wildignore+=*\\tmp\\*,*.exe
+" set wildignore+=*\\tmp\\*,*.exe
+" set wildignore+=*.exe
 " Allow cursor keys in insert mode
 set esckeys
 " Allow backspace in insert mode
