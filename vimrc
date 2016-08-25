@@ -38,6 +38,7 @@ Plugin 'mtscout6/syntastic-local-eslint.vim'
 Plugin 'tpope/vim-dispatch'
 
 " Languages {{{2
+Plugin 'sheerun/vim-polyglot' "Bunch of lang files
 Plugin 'othree/html5.vim'
 Plugin 'slim-template/vim-slim'
 Plugin 'mustache/vim-mustache-handlebars'
