@@ -32,6 +32,9 @@ Plugin 'Valloric/YouCompleteMe'
 
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/syntastic'
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 " Dynamic eslint exec path
 Plugin 'mtscout6/syntastic-local-eslint.vim'
 
@@ -216,8 +219,41 @@ set colorcolumn=81
 highlight ColorColumn ctermbg=234
 
 
+" NetRW/NerdTree settings
+""""""""""""""""
 " Map NerdTree toggle to netrw (Explore)
-map <Leader>n :Explore<CR>
+" map <Leader>n :Explore<CR>
+map <Leader>n :NERDTreeToggle<CR>
+
+let g:netrw_banner=0    " Hide the top banner
+" let g:netrw_browse_split=4
+" let g:netrw_altv=1      " Open left hand side
+" let g:netrw_liststyle= 3 " Tree view
+
+" NERDTress File highlighting
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+    exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+    exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+" Javascript
+call NERDTreeHighlightFile('js', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('jsx', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+
+" Styles
+call NERDTreeHighlightFile('styl', 'blue', 'none', '#563d7c', '#151515')
+call NERDTreeHighlightFile('css', 'blue', 'none', '#563d7c', '#151515')
+call NERDTreeHighlightFile('less', 'blue', 'none', '#563d7c', '#151515')
+" HTML / markup
+call NERDTreeHighlightFile('html', 'Magenta', 'none', '#e44b23', '#151515')
+" Other
+call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+
 
 " NerdCommenter
 let NERDSpaceDelims = 1
@@ -244,12 +280,15 @@ map <C-F> :Ack<CR>
 
 " Key mapping for TagBar
 "nmap <F8> :TagbarToggle<CR>
+set tags=tags;
 
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-a>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+" let g:UltiSnipsSnippetsDir=
 
 set laststatus=2
 
@@ -384,4 +423,11 @@ let g:syntastic_javascript_checkers = ['eslint']
 
 " HTML Checking
 let g:syntastic_html_tidy_exec = 'tidy5'
+
+" Java
+" let g:syntastic_java_javac_autoload_maven_classpath = 1
+
+
+" AG search
+let g:ackprg = 'ag --nogroup --nocolor --column'
 " }}}
