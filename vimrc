@@ -1,6 +1,6 @@
 " vim: foldmethod=marker
 " Make Vim more useful
-set nocompatible
+" set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
 
@@ -35,6 +35,9 @@ Plugin 'scrooloose/syntastic'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+
 " Dynamic eslint exec path
 Plugin 'mtscout6/syntastic-local-eslint.vim'
 
@@ -69,6 +72,9 @@ Plugin 'mattn/emmet-vim'
 
 Plugin 'mxw/vim-jsx'
 Plugin 'derekwyatt/vim-scala'
+
+" Nice fonts things
+Plugin 'ryanoasis/vim-devicons'
 
 " Themes {{{2
 Plugin 'freeo/vim-kalisi'
@@ -170,6 +176,14 @@ endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
+
+" GuiFont for devicons
+" set guifont=<FONT_NAME>:h<FONT_SIZE>
+" Linux
+" set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 11
+" macOS
+" set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types:h11
+
 " Folding -------------------------------------------------------------------------------- {{{1
 
 " set folding
@@ -231,28 +245,28 @@ let g:netrw_banner=0    " Hide the top banner
 " let g:netrw_liststyle= 3 " Tree view
 
 " NERDTress File highlighting
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
-    exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
-    exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
+" function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+    " exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+    " exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+" endfunction
 
 " Javascript
-call NERDTreeHighlightFile('js', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('jsx', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('js', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('jsx', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
 
 " Styles
-call NERDTreeHighlightFile('styl', 'blue', 'none', '#563d7c', '#151515')
-call NERDTreeHighlightFile('css', 'blue', 'none', '#563d7c', '#151515')
-call NERDTreeHighlightFile('less', 'blue', 'none', '#563d7c', '#151515')
+" call NERDTreeHighlightFile('styl', 'blue', 'none', '#563d7c', '#151515')
+" call NERDTreeHighlightFile('css', 'blue', 'none', '#563d7c', '#151515')
+" call NERDTreeHighlightFile('less', 'blue', 'none', '#563d7c', '#151515')
 " HTML / markup
-call NERDTreeHighlightFile('html', 'Magenta', 'none', '#e44b23', '#151515')
+" call NERDTreeHighlightFile('html', 'Magenta', 'none', '#e44b23', '#151515')
 " Other
-call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+" call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+" call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
 
 " NerdCommenter
