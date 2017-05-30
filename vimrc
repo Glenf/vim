@@ -73,6 +73,9 @@ Plugin 'mattn/emmet-vim'
 Plugin 'mxw/vim-jsx'
 Plugin 'derekwyatt/vim-scala'
 
+Plugin 'fleischie/vim-styled-components'
+
+
 " Nice fonts things
 Plugin 'ryanoasis/vim-devicons'
 
@@ -100,7 +103,7 @@ set wildignore+=*.png,*.jpg,*.o,*.so,*.swp,*.zip,*.tar,*/node_modules/*
 " set wildignore+=*\\tmp\\*,*.exe
 " set wildignore+=*.exe
 " Allow cursor keys in insert mode
-set esckeys
+" set esckeys
 " Allow backspace in insert mode
 set backspace=indent,eol,start
 " Optimize for fast terminal connections
@@ -298,9 +301,9 @@ set tags=tags;
 
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-a>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsExpandTrigger="<C-a>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 
 " let g:UltiSnipsSnippetsDir=
 
